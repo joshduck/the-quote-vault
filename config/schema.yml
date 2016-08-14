@@ -1,0 +1,496 @@
+---
+propel: 
+  bookmark: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: BIGINT
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    item_id: 
+      type: BIGINT
+      required: true
+      default: 0
+      foreignTable: item
+      foreignReference: id
+      onDelete: CASCADE
+      onUpdate: CASCADE
+    user_id: 
+      type: BIGINT
+      required: true
+      default: 0
+      foreignTable: user
+      foreignReference: id
+      onDelete: CASCADE
+      onUpdate: CASCADE
+    created_at: 
+      type: TIMESTAMP
+      required: true
+      default: 0000-00-00 00:00:00
+    _indexes: 
+      User: 
+        - user_id
+      Item: 
+        - item_id
+  category: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: BIGINT
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    parent_category_id: 
+      type: BIGINT
+    name: 
+      type: VARCHAR
+      size: 255
+      required: true
+      default: 
+    slug: 
+      type: VARCHAR
+      size: 255
+      required: true
+      default: 
+    listed: 
+      type: TINYINT
+      required: true
+      default: 1
+    _indexes: 
+      Parent: 
+        - parent_category_id
+    _uniques: 
+      Slug: 
+        - slug
+  comment: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: BIGINT
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    item_id: 
+      type: BIGINT
+      required: true
+      default: 0
+    user_id: 
+      type: BIGINT
+    user_name: 
+      type: VARCHAR
+      size: 255
+    user_ip: 
+      type: VARCHAR
+      size: 16
+    created_at: 
+      type: TIMESTAMP
+      required: true
+      default: 0000-00-00 00:00:00
+    updated_at: 
+      type: TIMESTAMP
+      required: true
+      default: 0000-00-00 00:00:00
+    approved: 
+      type: TINYINT
+      required: true
+      default: 0
+    deleted: 
+      type: TINYINT
+      required: true
+      default: 0
+    text: 
+      type: LONGVARCHAR
+    _indexes: 
+      user: 
+        - user_id
+      article: 
+        - item_id
+  creator: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: BIGINT
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    given_names: 
+      type: VARCHAR
+      size: 255
+    slug: 
+      type: VARCHAR
+      size: 50
+      required: true
+      default: 
+    surname: 
+      type: VARCHAR
+      size: 255
+      required: true
+      default: 
+    title: 
+      type: VARCHAR
+      size: 45
+    biography: 
+      type: LONGVARCHAR
+    summary: 
+      type: VARCHAR
+      size: 255
+    image_id: 
+      type: BIGINT
+    _uniques: 
+      Slug: 
+        - slug
+  image: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: BIGINT
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    full_path: 
+      type: VARCHAR
+      size: 255
+      required: true
+      default: 
+    height: 
+      type: INTEGER
+      required: true
+      default: 0
+    width: 
+      type: INTEGER
+      required: true
+      default: 0
+    mimetype: 
+      type: VARCHAR
+      size: 32
+      required: true
+      default: 
+    user_id: 
+      type: BIGINT
+      foreignTable: user
+      foreignReference: id
+      onDelete: RESTRICT
+      onUpdate: RESTRICT
+    created_at: 
+      type: TIMESTAMP
+      required: true
+      default: 0000-00-00 00:00:00
+    updated_at: 
+      type: TIMESTAMP
+      required: true
+      default: 0000-00-00 00:00:00
+    deleted: 
+      type: TINYINT
+      required: true
+      default: 0
+    name: 
+      type: VARCHAR
+      size: 255
+      required: true
+      default: 
+    filesize: 
+      type: BIGINT
+      required: true
+      default: 0
+    copyright: 
+      type: VARCHAR
+      size: 255
+      required: true
+      default: 
+    medium_path: 
+      type: VARCHAR
+      size: 255
+      required: true
+      default: 
+    tiny_path: 
+      type: VARCHAR
+      size: 255
+      required: true
+      default: 
+    _indexes: 
+      User: 
+        - user_id
+  item: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: BIGINT
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    user_id: 
+      type: BIGINT
+      foreignTable: user
+      foreignReference: id
+      onDelete: RESTRICT
+      onUpdate: RESTRICT
+    text: 
+      type: LONGVARCHAR
+    date: 
+      type: DATE
+    rating: 
+      type: FLOAT
+    comment_count: 
+      type: INTEGER
+      required: true
+      default: 0
+    created_at: 
+      type: TIMESTAMP
+      required: true
+      default: 0000-00-00 00:00:00
+    updated_at: 
+      type: TIMESTAMP
+      required: true
+      default: 0000-00-00 00:00:00
+    approved: 
+      type: TINYINT
+      required: true
+      default: 0
+    deleted: 
+      type: TINYINT
+      required: true
+      default: 0
+    slug: 
+      type: VARCHAR
+      size: 60
+      required: true
+      default: 
+    creator_id: 
+      type: BIGINT
+      foreignTable: creator
+      foreignReference: id
+      onDelete: RESTRICT
+      onUpdate: RESTRICT
+    category_id: 
+      type: BIGINT
+      foreignTable: category
+      foreignReference: id
+      onDelete: RESTRICT
+      onUpdate: RESTRICT
+    _indexes: 
+      Creator: 
+        - creator_id
+      User: 
+        - user_id
+      Category: 
+        - category_id
+    _uniques: 
+      Slug: 
+        - slug
+  item_image: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: BIGINT
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    image_id: 
+      type: BIGINT
+      required: true
+      default: 0
+      foreignTable: image
+      foreignReference: id
+      onDelete: RESTRICT
+      onUpdate: RESTRICT
+    item_id: 
+      type: BIGINT
+      required: true
+      default: 0
+      foreignTable: item
+      foreignReference: id
+      onDelete: RESTRICT
+      onUpdate: RESTRICT
+    caption: 
+      type: VARCHAR
+      size: 255
+      required: true
+      default: 
+    _indexes: 
+      Item: 
+        - item_id
+      Image: 
+        - image_id
+  item_tag: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: BIGINT
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    item_id: 
+      type: BIGINT
+      required: true
+      default: 0
+      foreignTable: item
+      foreignReference: id
+      onDelete: RESTRICT
+      onUpdate: RESTRICT
+    tag_id: 
+      type: BIGINT
+      required: true
+      default: 0
+      foreignTable: tag
+      foreignReference: id
+      onDelete: RESTRICT
+      onUpdate: RESTRICT
+    _indexes: 
+      tag: 
+        - tag_id
+      article: 
+        - item_id
+  quiz: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: BIGINT
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    item_id: 
+      type: BIGINT
+      required: true
+      default: 0
+  rating: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: BIGINT
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    item_id: 
+      type: BIGINT
+      required: true
+      default: 0
+      foreignTable: item
+      foreignReference: id
+      onDelete: RESTRICT
+      onUpdate: RESTRICT
+    user_id: 
+      type: BIGINT
+      foreignTable: user
+      foreignReference: id
+      onDelete: RESTRICT
+      onUpdate: RESTRICT
+    user_ip: 
+      type: VARCHAR
+      size: 16
+    created_at: 
+      type: TIMESTAMP
+      required: true
+      default: 0000-00-00 00:00:00
+    rating: 
+      type: INTEGER
+      required: true
+      default: 0
+    _indexes: 
+      Item: 
+        - item_id
+      User: 
+        - user_id
+  tag: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: BIGINT
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    name: 
+      type: VARCHAR
+      size: 50
+      required: true
+      default: 
+    item_count: 
+      type: INTEGER
+      required: true
+      default: 0
+    _uniques: 
+      Index_2: 
+        - name
+  user: 
+    id: 
+      type: BIGINT
+      required: true
+      primaryKey: true
+      default: 
+    email: 
+      type: VARCHAR
+      size: 255
+      required: true
+      default: 
+    display_name: 
+      type: VARCHAR
+      size: 255
+      required: true
+      default: 
+    authenticated: 
+      type: TINYINT
+      required: true
+      default: 0
+    deleted: 
+      type: TINYINT
+      required: true
+      default: 0
+    created_at: 
+      type: TIMESTAMP
+      required: true
+      default: 0000-00-00 00:00:00
+    updated_at: 
+      type: TIMESTAMP
+      required: true
+      default: 0000-00-00 00:00:00
+    newsletter_subscribe: 
+      type: TINYINT
+      required: true
+      default: 0
+    dob: 
+      type: DATE
+    gender: 
+      type: VARCHAR
+      size: 1
+    country: 
+      type: VARCHAR
+      size: 255
+    profile: 
+      type: LONGVARCHAR
+    first_name: 
+      type: VARCHAR
+      size: 255
+    last_name: 
+      type: VARCHAR
+      size: 255
+    zip_code: 
+      type: VARCHAR
+      size: 10
+    state: 
+      type: VARCHAR
+      size: 255
+    city: 
+      type: VARCHAR
+      size: 255
+    password_hash: 
+      type: VARCHAR
+      size: 32
+      required: true
+      default: 
+    profile_private: 
+      type: TINYINT
+    personal_private: 
+      type: TINYINT
+    image_id: 
+      type: BIGINT
+      foreignTable: image
+      foreignReference: id
+      onDelete: RESTRICT
+      onUpdate: RESTRICT
+    _indexes: 
+      Email: 
+        - email
+      Display: 
+        - display_name
+      user_image: 
+        - image_id

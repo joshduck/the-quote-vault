@@ -1,0 +1,15 @@
+fields:
+  user_name:
+    required:
+      msg:       Your name cannot be left blank
+    sfStringValidator:
+      min:       2
+      min_error: Your name is too short (2 characters minimum)
+      max:       100
+      max_error: Your name  is too long. (100 characters maximum)
+  text:
+    required:
+      msg:       Text cannot be left blank
+    sfStringValidator:
+      min:       2
+      min_error: Your text is too short (2 characters minimum)

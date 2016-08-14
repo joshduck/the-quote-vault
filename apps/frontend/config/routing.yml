@@ -1,0 +1,59 @@
+# default rules
+
+item_random:
+  url:  /random
+  param: { module: item, action: random }
+
+item:
+  url:  /quote/:slug
+  param: { module: item, action: show }
+
+item_action:
+  url:  /quote/:slug/:action
+  param: { module: item }
+
+author:
+  url:  /author/:slug
+  param: { module: creator, action: show }
+
+author_list:
+  url:  /author/browse/:letter
+  param: { module: creator, action: list }
+
+author_list_page:
+  url:  /author/browse/:letter/:page
+  param: { module: creator, action: list }
+
+tag_list:
+  url:  /tag/
+  param: { module: tag, action: list }
+
+tag:
+  url:  /tag/:name
+  param: { module: tag, action: show }
+
+tag_page:
+  url:  /tag/:name/:page
+  param: { module: tag, action: show }
+
+
+
+quiz:
+  url:   /
+  param: { module: quiz, action: index }
+
+
+homepage:
+  url:   /
+  param: { module: default, action: index }
+
+default_symfony:
+  url:   /home/:action/*
+  param: { module: default }
+
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*
